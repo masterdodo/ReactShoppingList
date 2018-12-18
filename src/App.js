@@ -10,7 +10,7 @@ class App extends Component
     super(props)
     this.state = 
     {
-      todosInit: ['100 kg meat', 'Ham', 'Cheese'],
+      todosInit: [],
       todos: [],
       todoText: '',
       message: false
@@ -36,10 +36,13 @@ class App extends Component
   createTodo(e)
   {
     e.preventDefault()
-    this.setState({
-      todos: [...this.state.todos, this.state.todoText],
-      todoText: '',
-    })
+    if(this.state.todoText !== '')
+    {
+      this.setState({
+        todos: [...this.state.todos, this.state.todoText],
+        todoText: '',
+      })
+    }
   }
 
   removeTodo(index)
@@ -65,7 +68,6 @@ class App extends Component
             <form onSubmit={this.createTodo}>
               <div className="col-lg-12 input-group">
                 <input 
-                required
                 type="text" 
                 className="center-block" 
                 placeholder="Insert item..." 
